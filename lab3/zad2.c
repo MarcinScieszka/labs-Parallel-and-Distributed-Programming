@@ -1,3 +1,8 @@
+/*
+    The program simulates a pub with NR_OF_CLIENTS customers and NR_OF_MUGS mugs of beer.
+    Each client leaves the pub after drinking MAX_BEERS_DRANK mugs of beer for a maximum of MAX_DRINKING_TIME seconds.
+*/
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -81,14 +86,14 @@ void *drink(void *arg)
         mug_id = i + 1;
         pthread_mutex_unlock(&mutex);
 
-        printf("Klient nr %d zamawia piwo w kuflu nr %d\n", client_id, i + 1);
+        printf("Client nr %d orders beer in mug nr %d\n", client_id, i + 1);
         sleep(drinking_time);
-        printf("Klient nr %d oddaje kufel nr %d po czasie %d\n", client_id, mug_id, drinking_time);
+        printf("Client nr %d returns mug nr %d after %d\n", client_id, mug_id, drinking_time);
         mugs_drank[client_id - 1]++;
         mugs[mug_id - 1] = 0;
         if (mugs_drank[client_id - 1] == MAX_BEERS_DRANK)
         {
-            printf("Klient nr %d opuszcza pub\n", client_id);
+            printf("Client nr %d leaves pub\n", client_id);
             break;
         }
     }

@@ -1,10 +1,9 @@
+// The program demonstrates the use of mutex in a multithreaded program
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-
-// The program demonstrates the use of mutex in a multithreaded program
-// Compilation: gcc zad1.c -o zad1 -lpthread
 
 int global_variable = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
